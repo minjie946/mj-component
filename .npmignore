@@ -1,0 +1,35 @@
+# 单个文件
+.DS_Store
+deploy_versions/
+.rn_temp/
+coverage
+npm-debug.log
+npm-debug.log.*
+thumbs.db
+!.gitkeep
+package-lock.json
+yarn-error.log
+yarn.lock
+package-lock.json
+rollup.config.base.js
+rollup.config.dev.js
+rollup.config.js
+tsconfig.json
+
+# 文件夹
+test/
+src/
+config/
+node_modules/
+components/
+.idea/
+.temp/*
+dist/*
+src/*
+build/*
+!build/icons
+!build/plists
+.cache-loader
+deploy_versions/
+.rn_temp/
+

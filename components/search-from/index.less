@@ -1,0 +1,111 @@
+/**
+ * @description 搜索的组件
+ * @author minjie
+ * @Date 2021-01-29 16:40
+ * @LastEditTime 2021-10-12 16:51
+ * @LastEditors minjie
+ * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
+ */
+@keyframes fadein {
+	from { opacity: 0;}
+	to { opacity: 1;}
+};
+@keyframes fadeout {
+	from { opacity: 1;}
+  to { opacity: 0;}
+};
+.search-container {
+  .sj-search-content {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .sj-search-left-content {
+      flex: 0 0 calc(100% - 200px);
+    }
+    .sj-search-right-content {
+      flex: 0 0 200px;
+      padding: 5px 0px;
+    }
+  }
+  /* 自定义的栅格 */
+  .sj-search-row {
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  /* 自定义的栅格, 按每行显示的个数 */
+  .sj-search-col,
+  .sj-search-col-5,
+  .sj-search-col-4,
+  .sj-search-col-3,
+  .sj-search-col-2,
+  .sj-search-col-1 {
+    display: block;
+    width: 100%;
+    padding: 7px 0px;
+    box-sizing: border-box;
+  }
+  .sj-search-col,
+  .sj-search-col-5 {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+  .sj-search-col-4 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+  .sj-search-col-3 {
+    flex: 0 0 33.3%;
+    max-width: 33.3%;
+  }
+  .sj-search-col-2 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .sj-search-col-1 {
+    flex: 0 0 98%;
+    max-width: 98%;
+  }
+  &-collapsed-content {
+    padding-right: 2% !important;
+    .search-container-collapsed-text {
+      color: #1281FF;
+      cursor: pointer;
+      align-items: center;
+      font-size: 12px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      line-height: 32px;
+      > span {
+        margin-left: 4px;
+      }
+    }
+  }
+  .sj-search-col-3&-collapsed-content{
+    padding-right: 5% !important;
+  }
+  .sj-search-col-1&-collapsed-content,
+  .sj-search-col-2&-collapsed-content{
+    padding-right: 8% !important;
+  }
+  &-collapsed-col-show {
+    display: flex !important;
+    animation: fadein 0.4s ease-in;
+    transition: all 0.4s;
+  }
+  &-collapsed-col-hidden {
+    animation: fadeout 0.4s ease-out;
+    transition: all 0.4s;
+    display: none !important;
+  }
+  /* 隐藏 */
+  .sj-search-col-hidden {
+    display: none !important;
+  }
+  .ant-form-item-with-help {
+    margin: 0 !important;
+  }
+}

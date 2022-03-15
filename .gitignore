@@ -1,0 +1,29 @@
+# 单个文件
+.DS_Store
+deploy_versions/
+.rn_temp/
+
+coverage
+
+npm-debug.log
+npm-debug.log.*
+thumbs.db
+!.gitkeep
+package-lock.json
+yarn-error.log
+yarn.lock
+package-lock.json
+
+# 文件夹
+test/
+node_modules/*
+node_modules/
+.idea/
+.temp/*
+dist/*
+build/*
+!build/icons
+!build/plists
+.cache-loader
+deploy_versions/
+.rn_temp/
