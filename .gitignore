@@ -16,6 +16,7 @@ package-lock.json
 
 # 文件夹
 test/
+lib/*
 node_modules/*
 node_modules/
 .idea/

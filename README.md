@@ -1,14 +1,14 @@
-# mj-tools
+# mj-component
 
-封装的axios 请求 工具等
+UI 组件
 
 ### 安装
 ```
-npm install mj-tools
+npm install mj-component
 
 或
 
-yarn mj-tools
+yarn mj-component
 
 ```
 
