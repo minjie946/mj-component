@@ -2,7 +2,7 @@
  * @description 可以改变高度的容器
  * @author minjie
  * @Date 2021-09-30 15:32
- * @LastEditTime 2022-03-10 17:26
+ * @LastEditTime 2022-03-17 14:30
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -10,6 +10,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import classNames from 'classnames'
 import { ContentProps, FooterProps, HeaderItemProps } from './index.inter'
 import './index.less'
+
+let contentTimeObj: any = null
 
 /**
  * 自定义事件
@@ -41,10 +43,52 @@ export const HeaderItem = ({ isline, margin = '20px 0', style = {}, className, c
   }, children)
 }
 
-let contentTimeObj: any = null
+/** 搜索的包裹层 */
+export const SearchContent = React.forwardRef((props: ContentProps, ref: any) => {
+  const { backgroundColor = '#fff', padding = '16px', className, style = {}, children, ...lastProps }: ContentProps = props
+  return React.createElement('div', {
+    ref,
+    className: classNames('self-adaption-content', className),
+    style: {
+      padding,
+      backgroundColor,
+      ...style
+    },
+    ...lastProps
+  }, children)
+})
+
+export const Footer = ({ className, style = {}, reduceWidth = '200px', reduceDom, children, ...props }: FooterProps) => {
+  // 底部存在的时候减去的侧边栏宽度
+  const [rdidth, onSetRdWidth]: [string, (reduceWidth: string) => void] = useState(typeof reduceWidth === 'number' ? reduceWidth + 'px' : reduceWidth)
+
+  useEffect(() => {
+    // 存在底部的时候，监听聚合的项目然后设置宽度
+    if (reduceDom) {
+      const heraSiderDom: any = document.getElementById(reduceDom)
+      if (heraSiderDom) {
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation: any, index: number) => {
+            if (mutations.length - 1 === index) {
+              onSetRdWidth(mutation.target.style.width)
+            }
+          })
+        })
+        const config = { style: true, attributeOldValue: true, attributeFilter: ['style'] }
+        observer.observe(heraSiderDom, config)
+      }
+    }
+  }, [])
+
+  return React.createElement('div', {
+    className: classNames('self-adaption-content-footer-bar', className),
+    style: { width: `calc(100% - ${rdidth})`, ...style },
+    ...props
+  }, children)
+}
 
 const ContentBase = ({ reduceHeight = 16, padding = '16px', minHeight, maxHeight,
-  backgroundColor = '#fff', isscroll = false, isfooter = false, className, style = {}, children, onHeight, ...props }: ContentProps) => {
+  backgroundColor = '#fff', isscroll = false, isfooter = false, className, style = {}, children, onHeight, ...props }:ContentProps) => {
   // 容器的高度
   const [height, onSetHeight]: [string | number, any] = useState('95%')
   // 当前容器的对象
@@ -100,50 +144,6 @@ const ContentBase = ({ reduceHeight = 16, padding = '16px', minHeight, maxHeight
       backgroundColor,
       ...style
     },
-    ...props
-  }, children)
-}
-
-/** 搜索的包裹层 */
-export const SearchContent = React.forwardRef((props: ContentProps, ref: any) => {
-  const { backgroundColor = '#fff', padding = '16px', className, style = {}, children, ...lastProps }: ContentProps = props
-  return React.createElement('div', {
-    ref,
-    className: classNames('self-adaption-content', className),
-    style: {
-      padding,
-      backgroundColor,
-      ...style
-    },
-    ...lastProps
-  }, children)
-})
-
-export const Footer = ({ className, style = {}, reduceWidth = '200px', reduceDom, children, ...props }: FooterProps) => {
-  // 底部存在的时候减去的侧边栏宽度
-  const [rdidth, onSetRdWidth]: [string, (reduceWidth: string) => void] = useState(typeof reduceWidth === 'number' ? reduceWidth + 'px' : reduceWidth)
-
-  useEffect(() => {
-    // 存在底部的时候，监听聚合的项目然后设置宽度
-    if (reduceDom) {
-      const heraSiderDom: any = document.getElementById(reduceDom)
-      if (heraSiderDom) {
-        const observer = new MutationObserver((mutations) => {
-          mutations.forEach((mutation: any, index: number) => {
-            if (mutations.length - 1 === index) {
-              onSetRdWidth(mutation.target.style.width)
-            }
-          })
-        })
-        const config = { style: true, attributeOldValue: true, attributeFilter: ['style'] }
-        observer.observe(heraSiderDom, config)
-      }
-    }
-  }, [])
-
-  return React.createElement('div', {
-    className: classNames('self-adaption-content-footer-bar', className),
-    style: { width: `calc(100% - ${rdidth})`, ...style },
     ...props
   }, children)
 }

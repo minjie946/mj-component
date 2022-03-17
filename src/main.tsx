@@ -1,13 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { default as BaseSpan } from '../components/span-text'
+import { Axios } from './axios'
+import { setSpanConfig, setTableConfig  } from '../components/index'
 import './index.css'
 
-BaseSpan.config = {
+setSpanConfig({
   power: ['aaa'],
-  powerData: ['22']
-}
+  powerData: ['22'],
+  passDev: false
+})
+
+setTableConfig({
+  axios: Axios
+})
 
 ReactDOM.render(
   <React.StrictMode>

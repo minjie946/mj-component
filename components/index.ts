@@ -3,9 +3,14 @@ export { default as Content } from './content'
 export type { ContentProps, HeaderItemProps, FooterProps } from './content/index.inter'
 
 /** 搜索的组件 */
-export { default as SearchFrom } from './search-from'
+export { default as SearchFrom, getSearchSaveParam } from './search-from'
 export type { SearchFromProps } from './search-from'
 
 /** 搜索的组件 */
-export { default as BaseSpan, SpanText, baseAuthenticated } from './span-text'
-export type { SpanTextProps, SpanTextType } from './span-text'
+export { SpanText, baseAuthenticated, setSpanConfig } from './span-text'
+export type { SpanTextProps, SpanTextType, SpanTextConfigProps } from './span-text'
+
+/** 表格的展示 */
+export { TableItem, setTableConfig } from './table'
+export type { TableItemProps, TableConfigProps } from './table'
+export type { ValueType, CheckValueProps, CheckConfigProps, TableChangeProps, TableDataProps, TableColumnMixsProps } from './table/index.d'

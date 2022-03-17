@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import typescript from '@rollup/plugin-typescript'
 import styleImport from 'vite-plugin-style-import'
+import { theme } from './antd-theme'
 
 const path = require('path');
 
@@ -13,7 +14,7 @@ export default defineConfig({
     preprocessorOptions: {
       less: { // 1. antd 按需加载需要处理的
         exclude: /node_modules/,
-        // modifyVars: theme,
+        modifyVars: theme,
         javascriptEnabled: true,
       }
     }
