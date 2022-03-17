@@ -6,11 +6,11 @@
  */
 import React from 'react'
 import { Input, DatePicker } from 'antd'
-import { SearchFrom, SearchFromProps } from '../../../components/index'
+import { SearchForm, SearchFormProps } from '../../../components/index'
 
-const { Item } = SearchFrom
+const { Item } = SearchForm
 
-interface SearchItemProps extends SearchFromProps {
+interface SearchItemProps extends SearchFormProps {
   searchParam: any
 }
 
@@ -23,7 +23,7 @@ export default class SearchItem extends React.Component<SearchItemProps> {
   render () {
     const { savesearchparam, searchParam } = this.props
     return (
-      <SearchFrom
+      <SearchForm
         initialValues={searchParam}
         onFinishData={this.onFinish}
         savesearchparam={savesearchparam}
@@ -38,7 +38,7 @@ export default class SearchItem extends React.Component<SearchItemProps> {
         <Item label="日期" name='time'>
           <DatePicker allowClear placeholder='请输入' style={{ width: '100%' }} />
         </Item>
-      </SearchFrom>
+      </SearchForm>
     )
   }
 }

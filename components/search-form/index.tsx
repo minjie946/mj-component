@@ -2,7 +2,7 @@
  * @description 搜索的组件
  * @author minjie
  * @Date 2021-01-29 15:08
- * @LastEditTime 2022-03-16 17:11
+ * @LastEditTime 2022-03-17 15:37
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -14,6 +14,7 @@ import { isFunction, isEmpty } from 'mj-tools'
 import { cloneDeep } from 'lodash-es'
 import classNames from 'classnames'
 import moment from 'moment'
+// import 'antd/lib/form/style/index.less'
 import './index.less'
 
 /** 表单项 */
@@ -63,7 +64,7 @@ export const getSearchSaveParam = (key: string, obj: any = {}, fristValue?: any)
   return obj
 }
 
-export interface SearchFromProps extends FormProps {
+export interface SearchFormProps extends FormProps {
   /** 是否收起：默认是收起的(false) */
   collapsed?: boolean
   /** 是否去除label: 默认false 不去除 */
@@ -102,7 +103,7 @@ export interface SearchFromProps extends FormProps {
 /** 计时的防重复的变更 */
 let timeDebounce: any = null
 
-const SearchFromBase = ({
+const SearchFormBase = ({
   collapsed: collapsedProps = false,
   nolabel = false,
   collapsedlen: collapsedlenProps = 4,
@@ -119,7 +120,7 @@ const SearchFromBase = ({
   onValuesChange,
   onFinishData,
   ...props
-}: SearchFromProps) => {
+}: SearchFormProps) => {
   // 表单
   const [form] = Form.useForm()
   // 是否开启和关闭
@@ -357,7 +358,7 @@ const SearchFromBase = ({
 /**
  * antd 表单进行的二次的封装， 使用的方式和From类似
  * ```tsx
- * <SearchFrom
+ * <SearchForm
  *  initialValues={searchParam}
  *  onFinishData={this.onFinish}
  * >
@@ -366,10 +367,10 @@ const SearchFromBase = ({
  * </Item>
  * ```
  */
-const SearchFrom:any = forwardRef((props: SearchFromProps, ref: any) => {
-  return <SearchFromBase {...props} forwardRef={ref} />
+const SearchForm:any = forwardRef((props: SearchFormProps, ref: any) => {
+  return <SearchFormBase {...props} forwardRef={ref} />
 })
 
-SearchFrom.Item = Item
+SearchForm.Item = Item
 
-export default SearchFrom
+export default SearchForm

@@ -3,8 +3,8 @@ export { default as Content } from './content'
 export type { ContentProps, HeaderItemProps, FooterProps } from './content/index.inter'
 
 /** 搜索的组件 */
-export { default as SearchFrom, getSearchSaveParam } from './search-from'
-export type { SearchFromProps } from './search-from'
+export { default as SearchForm, getSearchSaveParam } from './search-form'
+export type { SearchFormProps } from './search-form'
 
 /** 搜索的组件 */
 export { SpanText, baseAuthenticated, setSpanConfig } from './span-text'

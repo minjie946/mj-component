@@ -2,14 +2,22 @@
  * @description 表格的展示的
  * @author minjie
  * @Date 2021-10-13 15:07
- * @LastEditTime 2022-03-15 18:10
+ * @LastEditTime 2022-03-17 14:27
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
 import React from 'react';
 import './index.less';
 export declare type SpanTextType = 'warning' | 'info' | 'success' | 'error' | 'gay' | 'default';
-interface BaseAuthenticatedProps {
+export interface SpanTextConfigProps {
+    /** 功能的权限原子 */
+    power: string[];
+    /** 数据的权限原子 */
+    powerData: string[];
+    /** 开发环境是否默认通过验证: 默认 true */
+    passDev?: boolean;
+}
+export interface BaseAuthenticatedProps {
     /** 权限code */
     code: string | Array<string>;
     /**  验证的类型 'contain' (包含的关系)| 'must' (必须都有) 默认： contain */
@@ -19,14 +27,6 @@ interface BaseAuthenticatedProps {
     /** 开发环境是否默认通过验证: 默认 true */
     passDev?: boolean;
 }
-/**
- * 权限的判断
- * @param code  权限code
- * @param type  验证的类型 'contain' (包含的关系)| 'must' (必须都有) 默认： contain
- * @param auth  权限的集合
- * @returns true | false
- */
-export declare const baseAuthenticated: ({ code, type, auth, passDev }: BaseAuthenticatedProps) => boolean;
 export interface SpanTextProps<T = any> extends React.HTMLAttributes<T> {
     /** 只是在antd form 表格中使用 */
     value?: any;
@@ -51,34 +51,13 @@ export interface SpanTextProps<T = any> extends React.HTMLAttributes<T> {
     /** 显示为背景颜色 */
     isbackground?: boolean;
 }
-interface ConfigProps {
-    /** 功能的权限原子 */
-    power: string[];
-    /** 数据的权限原子 */
-    powerData: string[];
-    /** 开发环境是否默认通过验证: 默认 true */
-    passDev?: boolean;
-}
-export default class BaseSpan {
-    /**
-     * 配置
-     */
-    static config: ConfigProps;
-    /**
-     * 权限的判断
-     * @param code code  权限code
-     * @param type type  验证的类型 'contain' (包含的关系)| 'must' (必须都有) 默认： contain
-     * @returns {boolean}
-     */
-    static checkPower: (code: string | Array<string>, type?: 'contain' | 'must') => boolean;
-    /**
-     * 数据权限的判断
-     * @param code code  权限code
-     * @param type type  验证的类型 'contain' (包含的关系)| 'must' (必须都有) 默认： contain
-     * @returns {boolean}
-     */
-    static checkPowerData: (code: string | Array<string>, type?: 'contain' | 'must') => boolean;
-    static SpanText: React.FC<SpanTextProps>;
-}
-export declare const SpanText: React.FC<SpanTextProps<any>>;
-export {};
+/**
+ * 权限的判断
+ * @param code  权限code
+ * @param type  验证的类型 'contain' (包含的关系)| 'must' (必须都有) 默认： contain
+ * @param auth  权限的集合
+ * @returns true | false
+ */
+export declare const baseAuthenticated: ({ code, type, auth, passDev }: BaseAuthenticatedProps) => boolean;
+export declare function setSpanConfig(config: SpanTextConfigProps): void;
+export declare const SpanText: React.FC<SpanTextProps>;

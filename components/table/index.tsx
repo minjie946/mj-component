@@ -2,7 +2,7 @@
  * @description 表格
  * @author minjie
  * @Date 2021-10-09 14:10
- * @LastEditTime 2022-03-17 14:22
+ * @LastEditTime 2022-03-17 15:37
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -13,6 +13,8 @@ import { SpanText } from '../span-text'
 import { doubleFormat, isEmpty, isFunction, throttle, URLInterface, Axios as AxiosProps } from 'mj-tools'
 import { debounce, cloneDeep } from 'lodash-es'
 import moment from 'moment'
+// import 'antd/lib/table/style/index.less';
+// import 'antd/lib/modal/style/index.less';
 import './index.less'
 
 /** 定时的 */
@@ -464,7 +466,7 @@ export const TableItem = ({
       fixed: true,
       selectedRowKeys: selectedRowKeys,
       onChange: (selectedRowKeys: any) => onSetSelectedRowKeys(selectedRowKeys),
-      onSelect: onSelect.bind(this, 'select'),
+      onSelect: (record: any, selected: any, selectedRows?: any) => onSelect('select', record, selected, selectedRows),
       onSelectAll: onSelectAll,
       ...rowSelectionProps
     } : rowSelectionProps
@@ -490,8 +492,8 @@ export const TableItem = ({
     {dataSource.length > 0 && (isshowPagination || footerPageRender || checkConfig) && <Row justify='space-between' className='sjcommon-table-pagination'>
       <Col>
         {checkConfig && <Space size={20} style={{ lineHeight: '26px', marginRight: 6, paddingLeft: 10 }}>
-          <SpanText disabled={checkConfig?.disabled || checkConfig?.checkAll} cursor='pointer' onClick={onChageCheckAll.bind(this, true)}>全选</SpanText>
-          <SpanText disabled={checkConfig?.disabled || !checkConfig?.checkAll} cursor='pointer' onClick={onChageCheckAll.bind(this, false)}>取消</SpanText>
+          <SpanText disabled={checkConfig?.disabled || checkConfig?.checkAll} cursor='pointer' onClick={() => onChageCheckAll(true)}>全选</SpanText>
+          <SpanText disabled={checkConfig?.disabled || !checkConfig?.checkAll} cursor='pointer' onClick={() => onChageCheckAll(false)}>取消</SpanText>
           <SpanText type='default'>已选中：<span className='footer-pagination-num'>{checkValue.total || 0}</span> 条</SpanText>
         </Space>}
         {footerPageRender && footerPageRender()}
