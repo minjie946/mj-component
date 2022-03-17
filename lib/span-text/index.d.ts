@@ -2,7 +2,7 @@
  * @description 表格的展示的
  * @author minjie
  * @Date 2021-10-13 15:07
- * @LastEditTime 2022-03-17 14:27
+ * @LastEditTime 2022-03-17 16:41
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -59,5 +59,6 @@ export interface SpanTextProps<T = any> extends React.HTMLAttributes<T> {
  * @returns true | false
  */
 export declare const baseAuthenticated: ({ code, type, auth, passDev }: BaseAuthenticatedProps) => boolean;
-export declare function setSpanConfig(config: SpanTextConfigProps): void;
-export declare const SpanText: React.FC<SpanTextProps>;
+export declare const setSpanConfig: (config: SpanTextConfigProps) => void;
+declare const SpanText: any;
+export default SpanText;

@@ -2,19 +2,21 @@
  * @description 表格
  * @author minjie
  * @Date 2021-10-09 14:10
- * @LastEditTime 2022-03-17 15:37
+ * @LastEditTime 2022-03-17 17:08
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
 import React, { useEffect, useState, useRef } from 'react'
-import { TableChangeProps, TableDataProps, CheckConfigProps, CheckValueProps, TableColumnMixsProps } from './index.d'
+import { TableChangeProps, TableDataProps, CheckConfigProps, CheckValueProps, TableColumnMixsProps } from './index.info'
 import { Row, Col, Space, Table, TableProps, Pagination, PaginationProps, Modal } from 'antd'
-import { SpanText } from '../span-text'
+import { default as SpanText } from '../span-text'
 import { doubleFormat, isEmpty, isFunction, throttle, URLInterface, Axios as AxiosProps } from 'mj-tools'
 import { debounce, cloneDeep } from 'lodash-es'
 import moment from 'moment'
-// import 'antd/lib/table/style/index.less';
-// import 'antd/lib/modal/style/index.less';
+import 'antd/lib/table/style/index.less';
+import 'antd/lib/space/style/index.less';
+import 'antd/lib/pagination/style/index.less';
+import 'antd/lib/modal/style/index.less';
 import './index.less'
 
 /** 定时的 */
@@ -29,7 +31,7 @@ export interface TableConfigProps {
 }
 
 /** 配置 */
-export function setTableConfig (config:TableConfigProps) {
+const setTableConfig = (config:TableConfigProps) => {
   globeAxios = config.axios
 }
 
@@ -128,7 +130,7 @@ export interface TableItemProps<T = any> extends TableProps<T> {
  * @param {TableItemProps} props
  * @returns {React.ReactDOM}
  */
-export const TableItem = ({
+const TableItem = ({
   loading = false, action, params = {}, getParams = {}, pageSize = 15, columns,
   columnIsNull = '-', reduceHeight = 0, tableMinHeight = 450, cusindex = false, checkConfig, isshowPagination = true,
   scroll = {}, rowKey, isnoDatafooter = false, dataSource: dataSourceProps, rowSelection: rowSelectionProps,
@@ -502,3 +504,7 @@ export const TableItem = ({
     </Row>}
   </React.Fragment>
 }
+
+TableItem.config = setTableConfig
+
+export default TableItem

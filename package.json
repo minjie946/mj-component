@@ -1,6 +1,6 @@
 {
   "name": "mj-component",
-  "version": "0.0.1-alpha.2",
+  "version": "0.0.1-alpha.3",
   "description": "",
   "main": "lib/index.js",
   "jsnext:main": "lib/index.js",

@@ -2,7 +2,7 @@
  * @description 表格的展示的
  * @author minjie
  * @Date 2021-10-13 15:07
- * @LastEditTime 2022-03-17 14:27
+ * @LastEditTime 2022-03-17 16:41
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -102,7 +102,7 @@ export const baseAuthenticated = ({ code, type = 'contain', auth = [], passDev =
 /** 默认配置 */
 let SpanConfig: SpanTextConfigProps = { power: [], powerData: [], passDev: true }
 
-export function setSpanConfig (config:SpanTextConfigProps) {
+export const setSpanConfig = (config:SpanTextConfigProps) => {
   SpanConfig = config
 }
 
@@ -115,7 +115,7 @@ export function setSpanConfig (config:SpanTextConfigProps) {
 const checkPower = (code: string | Array<string>, type: 'contain' | 'must' = 'contain'): boolean => {
   return baseAuthenticated({ code, type, auth: SpanConfig.power, passDev: SpanConfig.passDev })
 }
-/**ß
+/**
  * 数据权限的判断
  * @param code code  权限code
  * @param type type  验证的类型 'contain' (包含的关系)| 'must' (必须都有) 默认： contain
@@ -125,8 +125,8 @@ const checkPowerData = (code: string | Array<string>, type: 'contain' | 'must' =
   return baseAuthenticated({ code, type, auth: SpanConfig.powerData, passDev: SpanConfig.passDev })
 }
 
-export const SpanText: React.FC<SpanTextProps> = ({ value, children, to, cursor, powerCode, notValueText = '---', style = {}, powerCodeData,
-  replace, disabled = false, isbackground = false, type = 'info', onChange, onClick, ...props }) => {
+const SpanText: any = ({ value, children, to, cursor, powerCode, notValueText = '---', style = {}, powerCodeData,
+  replace, disabled = false, isbackground = false, type = 'info', onChange, onClick, ...props }:SpanTextProps) => {
   /** 跳转到别的路径 */
   const onSpanClick = (e: any) => {
     if (!disabled && onClick) onClick(e)
@@ -164,3 +164,8 @@ export const SpanText: React.FC<SpanTextProps> = ({ value, children, to, cursor,
     return normalSpan()
   }
 }
+
+SpanText.config = setSpanConfig
+SpanText.authenticated = baseAuthenticated
+
+export default SpanText
