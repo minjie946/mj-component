@@ -2,7 +2,7 @@
  * @description 描述
  * @author minjie
  * @Date 2022-03-07 18:03
- * @LastEditTime 2022-03-17 12:04
+ * @LastEditTime 2022-03-17 18:35
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -12,8 +12,8 @@ import { Modal } from 'antd'
 
 import { Axios as BaseAxios, isEmpty } from 'mj-tools'
 
-const token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50VGltZU1pbGxpcyI6IjE2NDc0MDY0OTIzNjciLCJwcm9qZWN0TmFtZSI6IkJQTyIsImFjY291bnQiOiIxNTE4MTQ4MjYyOSIsInBsYXRmb3JtIjoid2ViIn0.j1wChm24nGxc6Wu5AYikVo_N7fJ3e9SqlSfid9bHL-Q'
-const traceid = 'WebPage_20c45707-7e6a-43cf-8dc1-c2de0f0d90fa_1647423223532_10004928'
+const token = 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50VGltZU1pbGxpcyI6IjE2NDc1MTE0MTE5MDIiLCJwcm9qZWN0TmFtZSI6IkNTUyIsImFjY291bnQiOiIxNTE4MTQ4MjYyOSIsInBsYXRmb3JtIjoid2ViIn0.nvTaZ7V3kq-sQJYHqQ3Qok9J9TkYfhzRFnup3IvEXhE'
+const traceid = 'WebPage_03455c7d-b055-4750-87d0-2aa698337018_1647513280163_10004928'
 
 /** 动态的请求头的信息 */
 const requertDynamicHeader = () => {

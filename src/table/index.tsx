@@ -2,12 +2,12 @@
  * @description table
  * @author minjie
  * @Date 2021-01-27 19:58
- * @LastEditTime 2022-03-17 14:29
+ * @LastEditTime 2022-03-18 15:26
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
 import React from 'react'
-import { CheckValueProps, getSearchSaveParam, TableColumnMixsProps, TableItem, Content, SpanText } from '../../components/index'
+import { CheckValueProps, TableColumnMixsProps, TableItem, SearchForm, Content, SpanText } from '../../components/index'
 import { Row, Col, Space, Button } from 'antd'
 import SearchItem from './component/SearchItem'
 import moment from 'moment'
@@ -33,7 +33,7 @@ interface TabelState {
 export default class Tabel extends React.Component<any, TabelState> {
   constructor (props: any) {
     super(props)
-    this.searchParam = getSearchSaveParam('dome_table', { time: moment() })
+    this.searchParam = SearchForm.getSearchSaveParam('dome_table', { time: moment() })
     this.state = {
       searchParam: this.searchParam,
       checkAll: false,

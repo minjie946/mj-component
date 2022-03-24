@@ -13,6 +13,8 @@ yarn.lock
 package-lock.json
 tsconfig.json
 index.html
+babel.config.js
+.babelrc
 .gitignore
 
 # 文件夹
@@ -20,7 +22,7 @@ test/
 typings/
 src/
 config/
-node_modules/
+node_modules/*
 components/
 .idea/
 .temp/*

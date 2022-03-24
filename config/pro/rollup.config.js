@@ -2,8 +2,10 @@ import typescript from "@rollup/plugin-typescript";
 // 清空文件夹
 import clear from 'rollup-plugin-clear';
 import json from "rollup-plugin-json";
-import resolve from "rollup-plugin-node-resolve"; // 帮助查找以及转化外部模块
+import { nodeResolve } from '@rollup/plugin-node-resolve'; // 帮助查找以及转化外部模块
 import commonjs from "@rollup/plugin-commonjs"; // 帮助查找以及转化外部模块
+// 可以处理组件中import图片的方式，将图片转换成base64格式，但会增加打包体积，适用于小图标
+import image from '@rollup/plugin-image';
 import styles from 'rollup-plugin-styles'
 // 处理css less 等的样式
 import autoprefixer from "autoprefixer";
@@ -47,12 +49,16 @@ const baseOutPutConfig = {
 
 export default {
   input: path.resolve('components/index.ts'),
-  output: { dir: 'lib', format: 'esm', name: pkg.name, ...baseOutPutConfig },
+  output: { 
+    dir: 'lib', format: 'esm', name: pkg.name,
+    ...baseOutPutConfig
+  },
   plugins: [
-    clear({ targets: ['lib'] }),
+    image(),
     styles({
       use: ['less'],
       mode: 'extract',
+      extract: true,
       sourcemap: true,
       extensions: [".css", '.less'],
       less: { javascriptEnabled: true },
@@ -65,17 +71,31 @@ export default {
     }),
     json(),
     commonjs({ include: /node_modules/ }),
-    resolve({
-      preferBuiltins: true,
-      jsnext: true,
-      main: true,
-      brower: true,
-    }),
-    typescript({ tsconfig: path.resolve('config/pro/tsconfig.json') }),
-    babel({ exclude: "node_modules/**" }),
     nodePolyfills(),
     terser(),
-    filesize()
+    filesize(),
+    nodeResolve(),
+    babel({
+      exclude: 'node_modules/**',
+      babelHelpers: 'bundled',
+      extensions: ['.tsx', 'ts'],
+      presets: [
+        ["@babel/env", {
+          "targets": { "browsers": ["> 1%", "last 2 versions", "not ie <= 8"] },
+          "useBuiltIns": "usage",
+          "corejs": 3
+        }],
+        "@babel/react",
+        "@babel/typescript"
+      ],
+      plugins: [
+        ["import", { "libraryName": "antd", "style": true }, "antd"],
+        ["import", { "libraryName": "lodash-es", "libraryDirectory": "", "camel2DashComponentName": false }, "lodash-es"]
+      ]
+    }),
+    typescript({ tsconfig: path.resolve('config/pro/tsconfig.json') }),
+    clear({ targets: ['lib'] })
   ],
+  context: 'window', // 解决this is undifind 的问题
   external: Object.keys(globalsObject)
 };

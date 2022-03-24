@@ -2,7 +2,7 @@
  * @description 搜索的组件
  * @author minjie
  * @Date 2021-01-29 15:08
- * @LastEditTime 2022-03-17 17:08
+ * @LastEditTime 2022-03-18 15:32
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -14,9 +14,10 @@ import { isFunction, isEmpty } from 'mj-tools'
 import { cloneDeep } from 'lodash-es'
 import classNames from 'classnames'
 import moment from 'moment'
-import 'antd/lib/form/style/index.less'
-import 'antd/lib/button/style/index.less'
-import 'antd/lib/space/style/index.less'
+// import 'antd/dist/antd.css';
+// import 'antd/lib/form/style/index.less'
+// import 'antd/lib/button/style/index.less'
+// import 'antd/lib/space/style/index.less'
 import './index.less'
 
 /** 表单项 */

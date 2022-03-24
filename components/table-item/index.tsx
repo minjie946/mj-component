@@ -2,7 +2,7 @@
  * @description 表格
  * @author minjie
  * @Date 2021-10-09 14:10
- * @LastEditTime 2022-03-17 17:08
+ * @LastEditTime 2022-03-18 15:32
  * @LastEditors minjie
  * @copyright Copyright © 2021 Shanghai Yejia Digital Technology Co., Ltd. All rights reserved.
  */
@@ -13,10 +13,11 @@ import { default as SpanText } from '../span-text'
 import { doubleFormat, isEmpty, isFunction, throttle, URLInterface, Axios as AxiosProps } from 'mj-tools'
 import { debounce, cloneDeep } from 'lodash-es'
 import moment from 'moment'
-import 'antd/lib/table/style/index.less';
-import 'antd/lib/space/style/index.less';
-import 'antd/lib/pagination/style/index.less';
-import 'antd/lib/modal/style/index.less';
+// import 'antd/dist/antd.css';
+// import 'antd/lib/table/style/index.less';
+// import 'antd/lib/space/style/index.less';
+// import 'antd/lib/pagination/style/index.less';
+// import 'antd/lib/modal/style/index.less';
 import './index.less'
 
 /** 定时的 */
